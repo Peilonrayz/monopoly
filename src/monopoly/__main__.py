@@ -8,23 +8,23 @@ class Location:
         self.id = None
 
     def __repr__(self):
-        return '{}({})'.format(self.group, self.name)
+        return "{}({})".format(self.group, self.name)
 
 
 class Card(Location):
     def __init__(self, name):
-        super().__init__('Card', name)
+        super().__init__("Card", name)
 
 
 class Corner(Location):
     def __init__(self, name):
-        super().__init__('Corner', name)
+        super().__init__("Corner", name)
 
 
 class Tax(Location):
     def __init__(self, name, tax):
         self.tax = tax
-        super().__init__('Tax', name)
+        super().__init__("Tax", name)
 
 
 class Property(Location):
@@ -40,22 +40,22 @@ class Property(Location):
 
 class House(Property):
     def __init__(self, group, name, cost, mortgage, upgrade, rent):
-        self.upgrade_cost =  upgrade
+        self.upgrade_cost = upgrade
         super().__init__(group, name, cost, mortgage, rent)
 
 
 class Station(Property):
     def __init__(self, name, cost, mortgage, rent):
-        super().__init__('Station', name, cost, mortgage, rent)
+        super().__init__("Station", name, cost, mortgage, rent)
 
 
 class Utility(Property):
     def __init__(self, name, cost, mortgage, rent):
-        super().__init__('Utility', name, cost, mortgage, rent)
+        super().__init__("Utility", name, cost, mortgage, rent)
 
 
 def read_game_data():
-    with open('game_data.json') as f:
+    with open("game_data.json") as f:
         return json.load(f)
 
 
@@ -63,37 +63,27 @@ def setup_ids(game, names, color):
     names = iter(names)
     houses = [
         House(group, name, *prices)
-        for group, name, prices in zip(color, names, game['houses'])
+        for group, name, prices in zip(color, names, game["houses"])
     ]
-    stations = [
-        Station(name, *prices)
-        for prices, name in zip(game['stations'], names)
-    ]
+    stations = [Station(name, *prices) for prices, name in zip(game["stations"], names)]
     utilities = [
-        Utility(name, *prices)
-        for prices, name in zip(game['utilities'], names)
+        Utility(name, *prices) for prices, name in zip(game["utilities"], names)
     ]
-    taxes = [
-        Tax(name, tax)
-        for tax, name in zip(game['tax'], names)
-    ]
-    cards = [
-        Card(name)
-        for _, name in zip(range(2), names)
-    ]
-    corners = [
-        Corner(name)
-        for _, name in zip(range(4), names)
-    ]
+    taxes = [Tax(name, tax) for tax, name in zip(game["tax"], names)]
+    cards = [Card(name) for _, name in zip(range(2), names)]
+    corners = [Corner(name) for _, name in zip(range(4), names)]
     return tuple(houses + stations + utilities + taxes + cards + corners)
 
 
 def setup_game():
     game = read_game_data()
-    ids = setup_ids(game['game'], game['localisation']['British'], game['color']['Brown'])
-    board = tuple(ids[id_] for id_ in game['game']['board'])
+    ids = setup_ids(
+        game["game"], game["localisation"]["British"], game["color"]["Brown"]
+    )
+    board = tuple(ids[id_] for id_ in game["game"]["board"])
     for i, item in enumerate(ids):
         item.id = i
     return ids, board
+
 
 setup_game()
