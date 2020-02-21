@@ -1,14 +1,14 @@
 Monopoly
 ========
 
-.. image:: https://travis-ci.com/Peilonrayz/community_challenge_monopoly.svg?branch=master
-   :target: https://travis-ci.com/Peilonrayz/community_challenge_monopoly
+.. image:: https://travis-ci.com/Peilonrayz/monopoly.svg?branch=master
+   :target: https://travis-ci.com/Peilonrayz/monopoly
    :alt: Build Status
 
 About
 -----
 
-Code Review's Monopoly community challenge.
+My solution to `Code Review's Monopoly Community Challenge <https://codereview.meta.stackexchange.com/q/6814>`_.
 
 Installation
 ------------
@@ -20,7 +20,7 @@ Installation
 Documentation
 -------------
 
-Documentation is available `via GitHub <https://peilonrayz.github.io/community_challenge_monopoly/>`_.
+Documentation is available `via GitHub <https://peilonrayz.github.io/monopoly/>`_.
 
 Testing
 -------
@@ -30,11 +30,11 @@ To run all tests run ``nox``. No venv is needed; nox makes all of them for us.
 .. code:: shell
 
    $ python -m pip install --user nox
-   $ git clone https://peilonrayz.github.io/community_challenge_monopoly/
-   $ cd community_challenge_monopoly
-   community_challenge_monopoly $ nox
+   $ git clone https://peilonrayz.github.io/monopoly/
+   $ cd monopoly
+   monopoly $ nox
 
 License
 -------
 
-community_challenge_monopoly is available under the MIT license.
+Monopoly is available under the MIT license.

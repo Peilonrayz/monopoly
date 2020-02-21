@@ -1,23 +1,31 @@
 #!/usr/bin/env python
 from setuptools import find_packages, setup
 
+try:
+    import ConfigParser as configparser
+except ImportError:
+    import configparser
+
 with open("README.rst") as f:
     LONG_DESCRIPTION = f.read()
 
+config = configparser.ConfigParser()
+config.read("setup.cfg")
+
 setup(
     name="monopoly",
-    version="0.0.0",
+    version=config.get("src", "version"),
     license="MIT",
-    description="Skeleton for Python projects.",
+    description="Monopoly",
     long_description=LONG_DESCRIPTION,
     long_description_content_type="text/x-rst",
     author="Peilonrayz",
     author_email="peilonrayz@gmail.com",
-    url="https://peilonrayz.github.io/community_challenge_monopoly",
+    url="https://peilonrayz.github.io/monopoly",
     project_urls={
-        "Bug Tracker": "https://github.com/Peilonrayz/community_challenge_monopoly/issues",
-        "Documentation": "https://peilonrayz.github.io/community_challenge_monopoly",
-        "Source Code": "https://github.com/Peilonrayz/community_challenge_monopoly",
+        "Bug Tracker": "https://github.com/Peilonrayz/monopoly/issues",
+        "Documentation": "https://peilonrayz.github.io/monopoly",
+        "Source Code": "https://github.com/Peilonrayz/monopoly",
     },
     packages=find_packages("src"),
     package_dir={"": "src"},
